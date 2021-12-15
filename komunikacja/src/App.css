@@ -58,7 +58,15 @@
 
 .link3 {
   text-decoration: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.link3:hover {
+  text-decoration: none;
   color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   font-size: 2rem;
 }
@@ -99,4 +107,5 @@
     0 6px 20px 0 rgba(255, 255, 255, 0.19);
   transition: 0.9s;
   transition: ease;
+  color: #fff;
 }
