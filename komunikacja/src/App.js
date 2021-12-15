@@ -32,6 +32,9 @@ function App() {
           <Route exact path="/employee_info/employee_list">
             <EmployeeList></EmployeeList>
           </Route>
+          <Route exact path="/employee_info/employee_list/:id">
+            <EmployeeList></EmployeeList>
+          </Route>
           <Route exact path="/ticket_owners_list">
             <TicketOwnersList></TicketOwnersList>
           </Route>
