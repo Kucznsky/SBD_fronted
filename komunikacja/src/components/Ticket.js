@@ -25,53 +25,54 @@ const Ticket = () => {
 
 
     return (
-        
-        <div className='content' style ={{display:'flex',flexDirection:'column',margin:100,alignItems:'center',justifyContent:'center',alignSelf:'center'}}>
-            <p style={{color:'white'}}>Kupowanie Biletu</p>
-            <form onSubmit={formik.handleSubmit}
-            style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
-             >
-       <label style={{color:'white'}} htmlFor="imie">imie</label>
-       <input
-         id="imie"
-         name="imie"
-         type="text"
-         onChange={formik.handleChange}
-         value={formik.values.imie}
-       />
- 
-       <label htmlFor="nazwisko" style={{color:'white'}}>nazwisko</label>
-       <input
-         id="nazwisko"
-         name="nazwisko"
-         type="text"
-         onChange={formik.handleChange}
-         value={formik.values.nazwisko}
-       />
+        <fieldset>
+          <legend>Kupowanie Biletu</legend>
+          <div className='content' style ={{display:'flex',flexDirection:'column',margin:100,alignItems:'center',justifyContent:'center',alignSelf:'center'}}>
+              <form onSubmit={formik.handleSubmit}
+              style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
+              >
+        <label style={{color:'white'}} htmlFor="imie">imie</label>
+        <input
+          id="imie"
+          name="imie"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.imie}
+        />
+  
+        <label htmlFor="nazwisko" style={{color:'white'}}>nazwisko</label>
+        <input
+          id="nazwisko"
+          name="nazwisko"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.nazwisko}
+        />
 
-        <label htmlFor="wynagrodzenie" style={{color:'white'}}>wynagrodzenie</label>
-       <input
-         id="wynagrodzenie"
-         name="wynagrodzenie"
-         type="number"
-         onChange={formik.handleChange}
-         value={formik.values.wynagrodzenie}
-       />
- 
-       <label htmlFor="stanowisko" style={{color:'white'}}>idStanowiska</label>
-       <input
-         id="stanowisko"
-         name="stanowisko"
-         type="number"
-         onChange={formik.handleChange}
-         value={formik.values.stanowisko}
-       />
- 
-       <button style={{marginTop:20,}}
-       type="submit">Dodaj</button>
-     </form>
-        
-        </div>
+          <label htmlFor="wynagrodzenie" style={{color:'white'}}>wynagrodzenie</label>
+        <input
+          id="wynagrodzenie"
+          name="wynagrodzenie"
+          type="number"
+          onChange={formik.handleChange}
+          value={formik.values.wynagrodzenie}
+        />
+  
+        <label htmlFor="stanowisko" style={{color:'white'}}>idStanowiska</label>
+        <input
+          id="stanowisko"
+          name="stanowisko"
+          type="number"
+          onChange={formik.handleChange}
+          value={formik.values.stanowisko}
+        />
+  
+        <button style={{marginTop:20,}}
+        type="submit">Dodaj</button>
+      </form>
+          
+          </div>
+      </fieldset>
     )
 }
 

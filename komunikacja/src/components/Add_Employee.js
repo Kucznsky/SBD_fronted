@@ -39,9 +39,10 @@ const Add_Employee = () => {
 
 
     return (
-        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-        <div className='content' style ={{display:'flex',flexDirection:'column',margin:100,alignItems:'center'}}>
-            <p style={{color:'white'}}>dodawanie pracownika</p>
+        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
+        <fieldset>
+        <legend>dodawanie pracownika</legend>
+        <div className='content' style ={{display:'flex',flexDirection:'column',margin:30,alignItems:'center'}}>
             <form onSubmit={formik.handleSubmit}
             style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
              >
@@ -85,8 +86,11 @@ const Add_Employee = () => {
        type="submit">Dodaj</button>
      </form>
         </div>
-        <hr/>
-        <div style={{width:'40%',margin:100,}}>
+      </fieldset>
+        <hr className='horizontal'/>
+        <fieldset>
+          <legend>Stanowiska</legend>
+        <div style={{width:'80%',margin:30,}}>
             <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
                 <div style={{color:'white'}}>Nazwa Stanowiska</div>
                 <div style={{color:'white'}}>Id Stanowiska</div>
@@ -103,6 +107,7 @@ const Add_Employee = () => {
         
 
         </div>
+        </fieldset>
         </div>
     )
 }
