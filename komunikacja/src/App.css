@@ -56,8 +56,47 @@
   background-color: #333;
 }
 
+.link3 {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
 .content {
   display: flex;
   justify-content: center;
   margin-top: 2%;
+}
+
+.list {
+  width: 90vw;
+  max-width: 1170px;
+  margin: 6rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.list {
+  flex-basis: 100%;
+}
+
+.list_element {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  width: 5rem;
+  height: auto;
+  padding: 1rem 2rem;
+  overflow-wrap: break-word;
+  display: flex;
+  justify-content: center;
+}
+
+.list_element:hover {
+  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2),
+    0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  transition: 0.9s;
+  transition: ease;
 }
