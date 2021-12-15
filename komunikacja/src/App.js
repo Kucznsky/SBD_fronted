@@ -2,15 +2,14 @@ import React from 'react';
 import './App.css';
 import Bus_info from './components/Bus_info';
 import Navbar from './components/Navbar';
-import Schedule from './components/Schedule';
 import Bus_stops from './components/Bus_stops';
 import Ticket from './components/Ticket';
 import EmployeeInfo from './components/EmployeeInfo';
 import DriversList from './components/DriversList';
 import EmployeeList from './components/EmployeeList';
 import TicketOwnersList from './components/TicketOwnersList'
-import EmployeeDetails from './components/employee_details';
-import Bus_schedule from './components/Bus_schedule';
+import Employee_Details from './components/Employee_details';
+import Lines from './components/Lines';
 import {BrowserRouter as  Router, Route, Switch} from 'react-router-dom';
 
 function App() {
@@ -18,15 +17,12 @@ function App() {
     <Router>
       <div> 
         <Navbar></Navbar>
-        <Switch>
+        <Switch>>
           <Route exact path="/">
-            <Schedule></Schedule>
-          </Route>
-          <Route exact path="/bus_stops">
             <Bus_stops></Bus_stops>
           </Route>
           <Route exact path="/bus_info/:id">
-            <Bus_schedule></Bus_schedule>
+            <Lines></Lines>
           </Route>
           <Route exact path="/employee_info">
             <EmployeeInfo></EmployeeInfo>
@@ -38,7 +34,7 @@ function App() {
             <EmployeeList></EmployeeList>
           </Route>
           <Route exact path="/employee_info/employee_list/:id">
-            <EmployeeDetails></EmployeeDetails>
+            <Employee_Details></Employee_Details>
           </Route>
           <Route exact path="/ticket_owners_list">
             <TicketOwnersList></TicketOwnersList>

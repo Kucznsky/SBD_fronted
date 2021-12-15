@@ -68,7 +68,6 @@
   color: #fff;
   text-shadow: rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  font-size: 2rem;
 }
 
 .content {
@@ -94,12 +93,10 @@
 .list_element {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
-  width: 5rem;
+  width: auto;
   height: auto;
   padding: 1rem 2rem;
   overflow-wrap: break-word;
-  display: flex;
-  justify-content: center;
 }
 
 .list_element:hover {
