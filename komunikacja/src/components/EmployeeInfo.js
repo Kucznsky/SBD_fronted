@@ -9,10 +9,10 @@ const EmployeeInfo = () => {
         <nav className='navbar_links'>
             <ul>
                 <li>
-                    <Link className='link' to='/employee_info/drivers_list'>List of bus drivers</Link>
+                    <Link className='link2' to='/employee_info/drivers_list'>List of bus drivers</Link>
                 </li>
                 <li>
-                    <Link className='link' to='/employee_info/employee_list'>List of employees</Link>
+                    <Link className='link2' to='/employee_info/employee_list'>List of employees</Link>
                 </li>
             </ul>
         </nav>
