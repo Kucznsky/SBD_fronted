@@ -14,6 +14,9 @@ const EmployeeInfo = () => {
                 <li>
                     <Link className='link2' to='/employee_info/employee_list'>List of employees</Link>
                 </li>
+                <li>
+                    <Link className='link2' to='/employee_info/add_employee'>Add an employee</Link>
+                </li>
             </ul>
         </nav>
         </div>
