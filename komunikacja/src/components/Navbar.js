@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
-//import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-//import {faHome, faVideo, faFilm, faCouch} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faBus,faInfoCircle,faUserFriends,faTicketAlt,faDollarSign} from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
     return(
