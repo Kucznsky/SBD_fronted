@@ -23,7 +23,7 @@ const Navbar = () => {
                         <Link className='link' to='/ticket_owners_list'>ticket owners list</Link>
                     </li>
                     <li>
-                        <Link className='link' to='/tickets'>tickets</Link>
+                        <Link className='link' to='/tickets'>Buy Tickets</Link>
                     </li>
                 </ul>
             </nav>

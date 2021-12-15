@@ -8,6 +8,7 @@ import Ticket from './components/Ticket';
 import EmployeeInfo from './components/EmployeeInfo';
 import DriversList from './components/DriversList';
 import EmployeeList from './components/EmployeeList';
+import Add_Employee from './components/Add_Employee';
 import TicketOwnersList from './components/TicketOwnersList'
 import EmployeeDetails from './components/employee_details';
 import Bus_schedule from './components/Bus_schedule';
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route exact path="/employee_info/employee_list">
             <EmployeeList></EmployeeList>
+          </Route>
+          <Route exact path="/employee_info/add_employee">
+            <Add_Employee></Add_Employee>
           </Route>
           <Route exact path="/employee_info/employee_list/:id">
             <EmployeeDetails></EmployeeDetails>

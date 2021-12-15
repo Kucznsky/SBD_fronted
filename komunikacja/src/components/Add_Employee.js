@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 
 
 
-const Ticket = () => {
+const Add_Employee = () => {
     const formik = useFormik({
         initialValues: {
           imie: '',
@@ -18,16 +18,30 @@ const Ticket = () => {
         },
       });
 
-      
+      const data = [
+            {
+                nazwaStanowiska: 'Kierowca',
+                idStanowiska: 1,
+            },
+            {
+                nazwaStanowiska: 'sprzatacz',
+                idStanowiska: 2,
+            },
+            {
+                nazwaStanowiska: 'Magazynier',
+                idStanowiska: 3,
+            },
+      ]
+
 
 
       
 
 
     return (
-        
-        <div className='content' style ={{display:'flex',flexDirection:'column',margin:100,alignItems:'center',justifyContent:'center',alignSelf:'center'}}>
-            <p style={{color:'white'}}>Kupowanie Biletu</p>
+        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+        <div className='content' style ={{display:'flex',flexDirection:'column',margin:100,alignItems:'center'}}>
+            <p style={{color:'white'}}>dodawanie pracownika</p>
             <form onSubmit={formik.handleSubmit}
             style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
              >
@@ -70,9 +84,27 @@ const Ticket = () => {
        <button style={{marginTop:20,}}
        type="submit">Dodaj</button>
      </form>
+        </div>
+        <hr/>
+        <div style={{width:'40%',margin:100,}}>
+            <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+                <div style={{color:'white'}}>Nazwa Stanowiska</div>
+                <div style={{color:'white'}}>Id Stanowiska</div>
+            </div>
+            <hr/>
+        {
+            data.map(o => 
+                <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
+                <div style={{color:'white'}}>{o.nazwaStanowiska}</div>
+                <div style={{color:'white'}}>{o.idStanowiska}</div>
+                </div>
+                )
+        }
         
+
+        </div>
         </div>
     )
 }
 
-export default Ticket
+export default Add_Employee
