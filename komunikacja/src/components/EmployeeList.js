@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import Axios from "axios";
 
 const EmployeeList = () => {
     return (
-        <div>
+        <div className='content'>
             <p>employee list</p>
         </div>
     )

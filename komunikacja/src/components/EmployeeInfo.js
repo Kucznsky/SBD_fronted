@@ -1,18 +1,21 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import Axios from "axios";
 
 
 const EmployeeInfo = () => {
     return (
-        <div>
+        <div className='content'>
+        <nav className='navbar_links'>
             <ul>
                 <li>
-                    <Link to='/employee_info/drivers_list'>List of bus drivers</Link>
+                    <Link className='link' to='/employee_info/drivers_list'>List of bus drivers</Link>
                 </li>
                 <li>
-                    <Link to='/employee_info/employee_list'>List of employees</Link>
+                    <Link className='link' to='/employee_info/employee_list'>List of employees</Link>
                 </li>
             </ul>
+        </nav>
         </div>
     )
 }

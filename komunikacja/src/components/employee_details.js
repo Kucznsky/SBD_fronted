@@ -1,12 +1,13 @@
 import React from 'react'
 import {useParams} from "react-router-dom";
+import Axios from "axios";
 
 const employee_details = () => {
 
-    const {id} = useParams();
+    //const {id} = useParams();
 
     return (
-        <div>
+        <div className='content'>
             <p>umowa pracownika</p>
         </div>
     )
