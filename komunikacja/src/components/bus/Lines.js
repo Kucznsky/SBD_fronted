@@ -7,7 +7,7 @@ const Lines = () => {
 
     return (
         <div className='content'>
-            <p>linie {id}</p>
+            <p>line {id}</p>
         </div>
     )
 }

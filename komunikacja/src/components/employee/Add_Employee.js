@@ -1,9 +1,5 @@
 import React from 'react'
-
 import { useFormik } from 'formik';
-
-
-
 
 const Add_Employee = () => {
     const formik = useFormik({
@@ -32,11 +28,6 @@ const Add_Employee = () => {
                 idStanowiska: 3,
             },
       ]
-
-
-
-      
-
 
     return (
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
