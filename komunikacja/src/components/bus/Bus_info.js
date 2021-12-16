@@ -1,25 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import Axios from 'axios';
 
-
-const data = [
-    {
-        idAutobusu: 1231231,
-        nrBoczny: 123123123,
-
-    },
-    {
-         idAutobusu: 1231231,
-        nrBoczny: 123123123,
-    },
-    {
-        idAutobusu: 1231231,
-        nrBoczny: 123123123,
-    },
-]
-
-
-
 const Bus_info = () => {
 
     const [bus,setBus] = useState([])
