@@ -13,18 +13,11 @@ const formik = useFormik({
           id_centrali: 1,
         },
         onSubmit: values => {
-          Axios.post("http://localhost:8080/pracownicy",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
+          Axios.post("http://localhost:8080/autobusy",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
         },
       });
 
-    const [autobusy, setAutobusy] = useState([])
-
-    useEffect(() => {
-        Axios.get("http://localhost:8080/stanowiska")
-            .then(res => setAutobusy(res.data));
-
-    },[]);
-
+  
     return (
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
         <fieldset>
@@ -33,7 +26,7 @@ const formik = useFormik({
             <form onSubmit={formik.handleSubmit}
             style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
              >
-       <label style={{color:'white'}} htmlFor="numer_boczny">imie</label>
+       <label style={{color:'white'}} htmlFor="numer_boczny">nr boczny</label>
        <input
          id="numer_boczny"
          name="numer_boczny"
@@ -60,16 +53,16 @@ const formik = useFormik({
          value={formik.values.wynagrodzenie}
        />
  
-       <label htmlFor="id_parkingu" style={{color:'white'}}>idStanowiska</label>
+       <label htmlFor="id_parkingu" style={{color:'white'}}>id Parkingu</label>
        <input
          id="id_parkingu"
          name="id_parkingu"
          type="number"
          onChange={formik.handleChange}
-         value={formik.values.id_stanowiska}
+         value={formik.values.id_parkingu}
        />
         
-       <label htmlFor="id_centrali" style={{color:'white'}}>id_centrali</label>
+       <label htmlFor="id_centrali" style={{color:'white'}}>id centrali</label>
        <input
          id="id_centrali"
          name="id_centrali"
