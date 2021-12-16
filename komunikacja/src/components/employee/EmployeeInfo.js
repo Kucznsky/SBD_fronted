@@ -4,7 +4,7 @@ import Axios from "axios";
 import EmployeeList from './EmployeeList';
 import DriversList from './DriversList';
 import Add_Employee from './Add_Employee';
-
+import Add_arrangement from './Add_arrangement';
 
 const EmployeeInfo = () => {
     return (
@@ -21,6 +21,9 @@ const EmployeeInfo = () => {
                     <li>
                         <Link className='link2' to='/employee_info/add_employee'>Add an employee</Link>
                     </li>
+                    <li>
+                        <Link className='link2' to='/employee_info/add_arrangement'>Add an arragement</Link>
+                    </li>
                 </ul>
             </nav>
             </div>
@@ -33,6 +36,9 @@ const EmployeeInfo = () => {
                 </Route>
                 <Route exact path='/employee_info/add_employee'>
                     <Add_Employee></Add_Employee>
+                </Route>
+                <Route exact path='/employee_info/add_arrangement'>
+                    <Add_arrangement></Add_arrangement>
                 </Route>
             </Switch>
         </Router>

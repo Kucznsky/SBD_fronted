@@ -26,10 +26,6 @@ const Add_Employee = () => {
            
     },[]);
 
-    
- 
-    
-
     return (
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
         <fieldset>
