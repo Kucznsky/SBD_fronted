@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 
 
 
-const Ticket = () => {
+const Buy_ticket = () => {
     const formik = useFormik({
         initialValues: {
           imie: '',
@@ -75,4 +75,4 @@ const Ticket = () => {
     )
 }
 
-export default Ticket
+export default Buy_ticket

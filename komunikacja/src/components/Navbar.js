@@ -8,22 +8,13 @@ const Navbar = () => {
             <nav className='navbar_links'>
                 <ul>
                     <li>
-                        <Link className='link' to='/'>Bus stops <FontAwesomeIcon icon={faBus}></FontAwesomeIcon></Link>
+                        <Link className='link' to='/'>Bus <FontAwesomeIcon icon={faBus}></FontAwesomeIcon></Link>
                     </li>
                     <li>
-                        <Link className='link' to='/bus_info'>Bus info <FontAwesomeIcon icon={faInfoCircle}></FontAwesomeIcon></Link>
+                        <Link className='link' to='/employee'>Employees <FontAwesomeIcon icon={faUserFriends}></FontAwesomeIcon></Link>
                     </li>
                     <li>
-                        <Link className='link' to='/tickets'>Buy Tickets <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon></Link>
-                    </li>
-                </ul>
-                <hr></hr>
-                <ul>
-                    <li>
-                        <Link className='link' to='/employee_info'>employee info <FontAwesomeIcon icon={faUserFriends}></FontAwesomeIcon></Link>
-                    </li>
-                    <li>
-                        <Link className='link' to='/ticket_owners_list'>ticket owners <FontAwesomeIcon icon={faTicketAlt}></FontAwesomeIcon></Link>
+                        <Link className='link' to='/ticket'>Buy Tickets <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon></Link>
                     </li>
                 </ul>
             </nav>
