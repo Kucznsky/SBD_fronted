@@ -19,7 +19,7 @@ const DriversList = () => {
 
     return (
         <fieldset>
-            <legend>Lista Kierowców aktualnie zajętych autobusów</legend>
+            <legend>Lista Kierowców aktualnie wolnych kierowcow</legend>
             <div style={{width:'90%',margin:30,display:'flex',flexDirection:'column'}}>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',width:'100%'}}>
                     <div style={{color:'white',width:'20%'}}>Imie</div>
@@ -29,7 +29,7 @@ const DriversList = () => {
                 </div>
                 <hr/>
             {
-                pracownicy.map(o => o.id_stanowiska=== 5 ? (
+                pracownicy.map(o => o.is_busy ===  0 ? (
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10,width:'100%'}}>
                     <div style={{color:'white',width:'20%'}}>{o.imie}</div>
                     <div style={{color:'white',width:'20%'}}>{o.nazwisko}</div>
