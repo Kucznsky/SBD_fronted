@@ -16,13 +16,19 @@ const Add_Employee = () => {
         },
       });
 
+
     const [stanowiska, setStanowiska] = useState([])
+
 
     useEffect(() => {
         Axios.get("http://localhost:8080/stanowiska")
-            .then(res => setStanowiska(res.data));
-
+            .then(res => setStanowiska(res.data.stanowiskaList));
+           
     },[]);
+
+    
+ 
+    
 
     return (
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
@@ -91,14 +97,15 @@ const Add_Employee = () => {
                 <div style={{color:'white'}}>Id Stanowiska</div>
             </div>
             <hr/>
-        {
-            stanowiska.map(o => 
+          
+        { 
+            stanowiska.map(o => (
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
                 <div style={{color:'white'}}>{o.nazwa}</div>
                 <div style={{color:'white'}}>{o.id}</div>
                 </div>
-                )
-        }
+          ))
+        } 
         
 
         </div>
