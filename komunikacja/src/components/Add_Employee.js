@@ -82,7 +82,7 @@ const Add_Employee = () => {
          value={formik.values.stanowisko}
        />
  
-       <button style={{marginTop:20,}}
+       <button
        type="submit">Dodaj</button>
      </form>
         </div>

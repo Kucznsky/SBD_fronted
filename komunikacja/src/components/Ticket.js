@@ -67,8 +67,7 @@ const Ticket = () => {
           value={formik.values.stanowisko}
         />
   
-        <button style={{marginTop:20,}}
-        type="submit">Dodaj</button>
+        <button type="submit">Dodaj</button>
       </form>
           
           </div>
