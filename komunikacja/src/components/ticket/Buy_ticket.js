@@ -9,6 +9,7 @@ const Buy_ticket = () => {
     const formik = useFormik({
         initialValues: {
           rodzaj: '',
+          id_klienta: 0,
           koszt: 0,
         },
         onSubmit: values => {
@@ -38,6 +39,14 @@ const Buy_ticket = () => {
           value={formik.values.rodzaj}
         />
 
+        <label htmlFor="id_klienta" style={{color:'white'}}>Id klienta</label>
+        <input
+          id="id_klienta"
+          name="id_klienta"
+          type="number"
+          onChange={formik.handleChange}
+          value={formik.values.id_klienta}
+        />
 
 
         <label htmlFor="koszt" style={{color:'white'}}>koszt</label>
