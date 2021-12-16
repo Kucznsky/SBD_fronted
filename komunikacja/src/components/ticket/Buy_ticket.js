@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React,{useEffect,useState} from 'react'
+import Axios from 'axios'
 import { useFormik } from 'formik';
 
 
@@ -8,21 +8,19 @@ import { useFormik } from 'formik';
 const Buy_ticket = () => {
     const formik = useFormik({
         initialValues: {
-          imie: '',
-          nazwisko: '',
-          wynagrodzenie: 0,
-          stanowisko: 0,
+          rodzaj: '',
+          koszt: 0,
         },
         onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
+          Axios.post("http://localhost:8080/bilety",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
         },
       });
 
-      
+    useEffect(() => {
+        Axios.get("http://localhost:8080/bilety")
+            .then(res => console.log(res.data));
 
-
-      
-
+    },[]);
 
     return (
         <fieldset>
@@ -31,45 +29,29 @@ const Buy_ticket = () => {
               <form onSubmit={formik.handleSubmit}
               style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
               >
-        <label style={{color:'white'}} htmlFor="imie">imie</label>
+        <label style={{color:'white'}} htmlFor="rodzaj">rodzaj</label>
         <input
-          id="imie"
-          name="imie"
+          id="rodzaj"
+          name="rodzaj"
           type="text"
           onChange={formik.handleChange}
-          value={formik.values.imie}
-        />
-  
-        <label htmlFor="nazwisko" style={{color:'white'}}>nazwisko</label>
-        <input
-          id="nazwisko"
-          name="nazwisko"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.nazwisko}
+          value={formik.values.rodzaj}
         />
 
-          <label htmlFor="wynagrodzenie" style={{color:'white'}}>wynagrodzenie</label>
+
+
+        <label htmlFor="koszt" style={{color:'white'}}>koszt</label>
         <input
-          id="wynagrodzenie"
-          name="wynagrodzenie"
+          id="koszt"
+          name="koszt"
           type="number"
           onChange={formik.handleChange}
-          value={formik.values.wynagrodzenie}
+          value={formik.values.koszt}
         />
-  
-        <label htmlFor="stanowisko" style={{color:'white'}}>idStanowiska</label>
-        <input
-          id="stanowisko"
-          name="stanowisko"
-          type="number"
-          onChange={formik.handleChange}
-          value={formik.values.stanowisko}
-        />
-  
+
         <button type="submit">Dodaj</button>
       </form>
-          
+
           </div>
       </fieldset>
     )

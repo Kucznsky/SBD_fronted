@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
+import Axios from 'axios'
 import { useFormik } from 'formik';
 
 const Add_Employee = () => {
@@ -7,27 +8,21 @@ const Add_Employee = () => {
           imie: '',
           nazwisko: '',
           wynagrodzenie: 0,
-          stanowisko: 0,
+          id_stanowiska: 3,
+          id_centrali: 1,
         },
         onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
+          Axios.post("http://localhost:8080/pracownicy",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
         },
       });
 
-      const data = [
-            {
-                nazwaStanowiska: 'Kierowca',
-                idStanowiska: 1,
-            },
-            {
-                nazwaStanowiska: 'sprzatacz',
-                idStanowiska: 2,
-            },
-            {
-                nazwaStanowiska: 'Magazynier',
-                idStanowiska: 3,
-            },
-      ]
+    const [stanowiska, setStanowiska] = useState([])
+
+    useEffect(() => {
+        Axios.get("http://localhost:8080/stanowiska")
+            .then(res => setStanowiska(res.data));
+
+    },[]);
 
     return (
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
@@ -64,13 +59,22 @@ const Add_Employee = () => {
          value={formik.values.wynagrodzenie}
        />
  
-       <label htmlFor="stanowisko" style={{color:'white'}}>idStanowiska</label>
+       <label htmlFor="id_stanowiska" style={{color:'white'}}>idStanowiska</label>
        <input
-         id="stanowisko"
-         name="stanowisko"
+         id="id_stanowiska"
+         name="id_stanowiska"
          type="number"
          onChange={formik.handleChange}
-         value={formik.values.stanowisko}
+         value={formik.values.id_stanowiska}
+       />
+        
+       <label htmlFor="id_centrali" style={{color:'white'}}>id_centrali</label>
+       <input
+         id="id_centrali"
+         name="id_centrali"
+         type="number"
+         onChange={formik.handleChange}
+         value={formik.values.id_centrali}
        />
  
        <button
@@ -88,10 +92,10 @@ const Add_Employee = () => {
             </div>
             <hr/>
         {
-            data.map(o => 
+            stanowiska.map(o => 
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
-                <div style={{color:'white'}}>{o.nazwaStanowiska}</div>
-                <div style={{color:'white'}}>{o.idStanowiska}</div>
+                <div style={{color:'white'}}>{o.nazwa}</div>
+                <div style={{color:'white'}}>{o.id}</div>
                 </div>
                 )
         }
