@@ -8,9 +8,12 @@ const Rent_bus = () => {
         initialValues: {
             id_autobusu: 1,
             id_linii: 1,
+            id_pracownika: 0,
         },
         onSubmit: values => {
-          Axios.post("http://localhost:8080/wyporzyczone",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
+          Axios.post("http://localhost:8080/wypozyczenia",values).then(response => {console.log(response)}).catch(error => {console.log(error)});
+          Axios.post(`http://localhost:8080/pracownicy/setBusy/${values.id_pracownika}`).then(response => {console.log(response)}).catch(error => {console.log(error)});
+          Axios.post(`http://localhost:8080/autobusy/setBusy/${values.id_autobusu}`).then(response => {console.log(response)}).catch(error => {console.log(error)});
         },
       });
 
@@ -29,7 +32,7 @@ const Rent_bus = () => {
             <form onSubmit={formik.handleSubmit}
             style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
              >
-       <label style={{color:'white'}} htmlFor="imie">Wybierz autobus</label>
+       <label style={{color:'white'}} htmlFor="id_autobusu">id Autobusu</label>
        <input
          id="id_autobusu"
          name="id_autobusu"
@@ -38,10 +41,19 @@ const Rent_bus = () => {
          value={formik.values.id_autobusu}
        />
  
-       <label htmlFor="nazwisko" style={{color:'white'}}>Wybierz linię</label>
+       <label htmlFor="id_lini" style={{color:'white'}}>nr Lini</label>
        <input
          id="id_linii"
          name="id_linii"
+         type="number"
+         onChange={formik.handleChange}
+         value={formik.values.id_linii}
+       />
+
+        <label htmlFor="id_pracownika" style={{color:'white'}}>id_pracownika</label>
+       <input
+         id="id_pracownika"
+         name="id_pracownika"
          type="number"
          onChange={formik.handleChange}
          value={formik.values.id_linii}
@@ -64,6 +76,11 @@ const Rent_bus = () => {
             bus.map(o => (
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
                 <div style={{color:'white'}}>{o.id}</div>
+                <button onClick={ () =>
+         Axios.delete("http://localhost:8080/wypozyczenia",o.id).then(response => {console.log(response)}).catch(error => {console.log(error)}),
+         Axios.post(`http://localhost:8080/pracownicy/setBusy/${o.id_pracownika}`).then(response => {console.log(response)}).catch(error => {console.log(error)}),
+         Axios.post(`http://localhost:8080/autobusy/setBusy/${o.id_autobusu}`).then(response => {console.log(response)}).catch(error => {console.log(error)})
+                }>Zakoncz Wypozyczenie</button>
                 </div>
           ))
         } 

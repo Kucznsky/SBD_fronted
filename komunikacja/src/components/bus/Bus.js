@@ -4,6 +4,7 @@ import Bus_info from './Bus_info';
 import Bus_stops from './Bus_stops';
 import Lines from './Lines';
 import Add_bus from './Add_bus';
+import Rent_bus from './Rent_bus';
 
 const Bus = () => {
     return (
@@ -20,6 +21,9 @@ const Bus = () => {
                      <li>
                         <Link className='link2' to='/bus_info/add_bus'>Add bus</Link>
                     </li>
+                    <li>
+                        <Link className='link2' to='/bus_info/Rent_bus'>Rent bus</Link>
+                    </li>
                 </ul>
             </nav>
             </div>
@@ -29,6 +33,9 @@ const Bus = () => {
                 </Route>
                 <Route exact path='/bus_info/bus_stops'>
                     <Bus_stops></Bus_stops>
+                </Route>
+                <Route exact path='/bus_info/Rent_bus'>
+                    <Rent_bus></Rent_bus>
                 </Route>
                 <Route exact path='/bus_info/add_bus'>
                     <Add_bus></Add_bus>
