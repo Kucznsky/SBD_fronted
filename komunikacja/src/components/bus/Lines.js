@@ -5,15 +5,15 @@ import Axios from "axios";
 const Lines = () => {
     const {id} = useParams();
 
-    
+
+  
 
 
     return (
-        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10,width:'100%',alignItems:'center'}}>
-
-           
-     <div style={{color:'white',width:'15%'}}>{id}</div>
-                                    
+        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10,width:'100%',alignItems:'center'}}>   
+        
+        <div style={{color:'white',width:'15%',margin:30}}> ID przystanku : {id}</div>
+                            
         </div>
     )
 }

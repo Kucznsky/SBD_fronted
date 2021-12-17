@@ -29,7 +29,7 @@ const DriversList = () => {
                 </div>
                 <hr/>
             {
-                pracownicy.map(o => o.is_busy ===  0 ? (
+                pracownicy.map(o => o.isBusy ===  0 && o.id_stanowiska === 5 ? (
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10,width:'100%'}}>
                     <div style={{color:'white',width:'20%'}}>{o.imie}</div>
                     <div style={{color:'white',width:'20%'}}>{o.nazwisko}</div>

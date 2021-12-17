@@ -9,14 +9,16 @@ const Bus_stops = () => {
 
     useEffect(() => {
         Axios.get("http://localhost:8080/przystanki")
-            .then(res => setStops(res.data.przystankiLista));
+            .then(res => setStops(res.data.przystankiList));
     },[]);
+
+console.log(stops);
 
     return (
         <article className='content' >
             <section className='list'>
-                {stops.map((stops) => {
-                return(<Stop key={stops.id} {...stops}></Stop>);
+                {stops.map(o => {
+                return(<Stop key={o.id} {...o}></Stop>);
                 })}
             </section>
         </article>
@@ -27,9 +29,9 @@ const Bus_stops = () => {
 
 const Stop = (props) => 
 {
-  const {name,localisation, id,area} = props;
+  const {nazwa,ulica, id,id_strefy} = props;
   return (
-      <Link className='link3' to={`/bus_info/${id}`}>
+      <Link className='link3' to={`/bus_info/${props.id}`}>
         <section className='list_element'>
             <h2>{props.nazwa}</h2>
             <p>{props.ulica}</p>
@@ -40,6 +42,7 @@ const Stop = (props) =>
 }
 
 Stop.propTypes = {
+    id: PropTypes.number,
     nazwa: PropTypes.string,
     ulica: PropTypes.string,
     id_strefy: PropTypes.number

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useFormik } from 'formik';
+import Axios from 'axios';
 
 const Add_client = () => {
 
@@ -7,9 +8,11 @@ const Add_client = () => {
         initialValues: {
           imie: '',
           nazwisko: '',
+          id_centrali: 1,
         },
         onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
+            Axios.post("http://localhost:8080/klienci",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
+
         },
       });
 
@@ -37,6 +40,14 @@ const Add_client = () => {
                             type="text"
                             onChange={formik.handleChange}
                             value={formik.values.nazwisko}
+                        />
+                        <label htmlFor="id_centrali" style={{color:'white'}}>id _centrali</label>
+                        <input
+                            id="id_centrali"
+                            name="id_centrali"
+                            type="number"
+                            onChange={formik.handleChange}
+                            value={formik.values.id_centrali}
                         />
 
                         <button type="submit">Dodaj</button>

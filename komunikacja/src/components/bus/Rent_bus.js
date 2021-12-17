@@ -24,10 +24,19 @@ const Rent_bus = () => {
             .then(res => setBus(res.data.autobusyList));   
     },[]);
 
+
+    const [wyp, setWyp] = useState([])
+
+    useEffect(() => {
+      Axios.get("http://localhost:8080/wypozyczenia")
+          .then(res => setWyp(res.data.wypozyczeniaList));   
+  },[]);
+
     return (
+      <div style={{display:'flex',flexDirection:'column',justifyContent:'space-evenly'}}>
      <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
         <fieldset>
-        <legend>dodawanie pracownika</legend>
+        <legend>Wypozycz Autobus</legend>
         <div className='content' style ={{display:'flex',flexDirection:'column',margin:30,alignItems:'center'}}>
             <form onSubmit={formik.handleSubmit}
             style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
@@ -56,7 +65,7 @@ const Rent_bus = () => {
          name="id_pracownika"
          type="number"
          onChange={formik.handleChange}
-         value={formik.values.id_linii}
+         value={formik.values.id_pracownika}
        />
  
        <button type="submit">Dodaj</button>
@@ -73,23 +82,58 @@ const Rent_bus = () => {
             <hr/>
           
         { 
-            bus.map(o => (
+            bus.map(o =>  o.isBusy === 0 ? (
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
                 <div style={{color:'white'}}>{o.id}</div>
-                <button onClick={ () =>
-         Axios.delete("http://localhost:8080/wypozyczenia",o.id).then(response => {console.log(response)}).catch(error => {console.log(error)}),
-         Axios.post(`http://localhost:8080/pracownicy/setBusy/${o.id_pracownika}`).then(response => {console.log(response)}).catch(error => {console.log(error)}),
-         Axios.post(`http://localhost:8080/autobusy/setBusy/${o.id_autobusu}`).then(response => {console.log(response)}).catch(error => {console.log(error)})
-                }>Zakoncz Wypozyczenie</button>
+ 
                 </div>
-          ))
+          ) : null )
         } 
         
 
         </div>
         </fieldset>
     </div>
+    <fieldset>
+    <legend>Wypozyczone Autobusy</legend>
+  <div style={{width:'80%',margin:30,}}>
+      <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+          <div style={{color:'white'}}>Id autobusu</div>
+      </div>
+      <hr/>
+    
+  { 
+      bus.map(o =>  o.isBusy === 1 ? (
+          <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
+          <div style={{color:'white'}}>{o.id}</div>
+        { wyp.map(g => ( g.id_autobusu === o.id ? 
+        <button onClick={() => 
+        (
+          Axios.post(`http://localhost:8080/pracownicy/setNotBusy/${g.id_pracownika}`).then(response => {console.log(response)}).catch(error => {console.log(error)}),
+          Axios.post(`http://localhost:8080/autobusy/setNotBusy/${g.id_autobusu}`).then(response => {console.log(response)}).catch(error => {console.log(error)}),
+          Axios.post(`http://localhost:8080/wypozyczenia/delete/${g.id}`).then(response => {console.log(response)}).catch(error => {console.log(error)})
+
+          )
+        }
+         > Zakoncz Wypozyczenie</button>
+        : null))
+         }
+           
+           
+          </div>
+    ) : null )
+  } 
+  
+
+  </div>
+  </fieldset>
+  </div>
     )
 }
 
 export default Rent_bus
+
+
+
+
+

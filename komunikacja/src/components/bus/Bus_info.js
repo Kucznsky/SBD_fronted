@@ -7,7 +7,9 @@ const Bus_info = () => {
 
     useEffect(() => {
         Axios.get("http://localhost:8080/autobusy")
-            .then(res => setBus(res.data.busList));
+            .then(res => setBus(res.data.autobusyList));
+
+            console.log(bus);
         
     },[]);
 
@@ -22,17 +24,19 @@ const Bus_info = () => {
                     <div style={{color:'white',width:'15%'}}>Model</div>
                     <div style={{color:'white',width:'15%'}}>id parkingu</div>
                     <div style={{color:'white',width:'15%'}}>id centrali</div>
+                    <div style={{color:'white',width:'15%'}}>jest zajety?</div>
                 </div>
                 <hr/>
             {
                 bus.map(o => 
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10,width:'100%'}}>
-                        <div style={{color:'white',width:'15%'}}>{o.id_autobusu}</div>
+                        <div style={{color:'white',width:'15%'}}>{o.id}</div>
                         <div style={{color:'white',width:'15%'}}>{o.numer_boczny}</div>
-                        <div style={{color:'white',width:'15%'}}>{o.nrBoczny}</div>
-                        <div style={{color:'white',width:'15%'}}>{o.nrBoczny}</div>
+                        <div style={{color:'white',width:'15%'}}>{o.marka}</div>
+                        <div style={{color:'white',width:'15%'}}>{o.model}</div>
                         <div style={{color:'white',width:'15%'}}>{o.id_parkingu}</div>
                         <div style={{color:'white',width:'15%'}}>{o.id_centrali}</div>
+                        <div style={{color:'white',width:'15%'}}>{o.isBusy ? 'Tak' : 'Nie'}</div>
                     </div>
                     )
             }
@@ -44,3 +48,5 @@ const Bus_info = () => {
 }
 
 export default Bus_info
+
+
