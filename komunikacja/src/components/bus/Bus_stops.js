@@ -14,6 +14,8 @@ const Bus_stops = () => {
 
 console.log(stops);
 
+
+
     return (
         <article className='content' >
             <section className='list'>
