@@ -1,6 +1,5 @@
 import React from 'react'
 import {BrowserRouter as  Router, Route, Switch, Link} from 'react-router-dom';
-import Axios from "axios";
 import Buy_ticket from './Buy_ticket';
 import Add_client from './Add_client';
 
