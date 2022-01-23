@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import { useFormik } from 'formik';
+import {BrowserRouter as  Router, Route, Switch, Link, useHistory} from 'react-router-dom';
 
 const Add_Employee = () => {
+  let history = useHistory();
   const formik = useFormik({
     initialValues: {
       imie: '',
@@ -27,14 +29,14 @@ const Add_Employee = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
       <fieldset>
-        <legend>dodawanie pracownika</legend>
+        <legend style={{color:'black'}}>dodawanie pracownika</legend>
         <div className='content' style={{ display: 'flex', flexDirection: 'column', margin: 30, alignItems: 'center' }}>
           <form onSubmit={formik.handleSubmit}
             style={{ display: 'flex', flexDirection: 'column', width: '40%', margin: 20, alignSelf: 'center', alignItems: 'center' }}
           >
-            <label style={{ color: 'white' }} htmlFor="imie">imie</label>
+            <label style={{ color: 'black' }} htmlFor="imie">imie</label>
             <input
               id="imie"
               name="imie"
@@ -43,7 +45,7 @@ const Add_Employee = () => {
               value={formik.values.imie}
             />
 
-            <label htmlFor="nazwisko" style={{ color: 'white' }}>nazwisko</label>
+            <label htmlFor="nazwisko" style={{ color: 'black' }}>nazwisko</label>
             <input
               id="nazwisko"
               name="nazwisko"
@@ -52,7 +54,7 @@ const Add_Employee = () => {
               value={formik.values.nazwisko}
             />
 
-            <label htmlFor="wynagrodzenie" style={{ color: 'white' }}>wynagrodzenie</label>
+            <label htmlFor="wynagrodzenie" style={{ color: 'black' }}>wynagrodzenie</label>
             <input
               id="wynagrodzenie"
               name="wynagrodzenie"
@@ -61,7 +63,7 @@ const Add_Employee = () => {
               value={formik.values.wynagrodzenie}
             />
 
-            <label htmlFor="id_stanowiska" style={{ color: 'white' }}>idStanowiska</label>
+            <label htmlFor="id_stanowiska" style={{ color: 'black' }}>idStanowiska</label>
             <input
               id="id_stanowiska"
               name="id_stanowiska"
@@ -70,7 +72,7 @@ const Add_Employee = () => {
               value={formik.values.id_stanowiska}
             />
 
-            <label htmlFor="id_centrali" style={{ color: 'white' }}>id_centrali</label>
+            <label htmlFor="id_centrali" style={{ color: 'black' }}>id_centrali</label>
             <input
               id="id_centrali"
               name="id_centrali"
@@ -79,26 +81,39 @@ const Add_Employee = () => {
               value={formik.values.id_centrali}
             />
 
-            <button
-              type="submit">Dodaj</button>
+        <input 
+        placeholder='Enter to submit / 1 to go back'
+        style={{width:300}}
+        onKeyPress={(ev) => {
+
+          if(ev.key === "Enter") {
+            formik.handleSubmit();
+          } else if (ev.key === '1') {
+            history.push('/employee')
+          }else {
+            window.alert("there is no such option");
+          }
+        }}
+        
+        
+        />
           </form>
         </div>
       </fieldset>
-      <hr className='horizontal' />
       <fieldset>
-        <legend>Stanowiska</legend>
+        <legend style={{color:'black'}}>Stanowiska</legend>
         <div style={{ width: '80%', margin: 30, }}>
           <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <div style={{ color: 'white' }}>Nazwa Stanowiska</div>
-            <div style={{ color: 'white' }}>Id Stanowiska</div>
+            <div style={{ color: 'black' }}>Nazwa Stanowiska</div>
+            <div style={{ color: 'black' }}>Id Stanowiska</div>
           </div>
-          <hr />
+       
 
           {
             stanowiska.map(o => (
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-                <div style={{ color: 'white' }}>{o.nazwa}</div>
-                <div style={{ color: 'white' }}>{o.id}</div>
+                <div style={{ color: 'black' }}>{o.nazwa}</div>
+                <div style={{ color: 'black' }}>{o.id}</div>
               </div>
             ))
           }

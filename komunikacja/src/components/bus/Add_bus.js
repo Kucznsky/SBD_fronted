@@ -1,9 +1,11 @@
 import React,{useEffect,useState} from 'react'
 import { useFormik } from 'formik';
 import Axios from 'axios'
+import {BrowserRouter as  Router, Route, Switch, Link, useHistory} from 'react-router-dom';
+
 
 const Add_bus = () => {
-    
+  let history = useHistory();
 const formik = useFormik({
         initialValues: {
           numer_boczny: 0,
@@ -19,14 +21,14 @@ const formik = useFormik({
 
   
     return (
-        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
+        
         <fieldset>
-        <legend>dodawanie autobusu</legend>
-        <div className='content' style ={{display:'flex',flexDirection:'column',margin:30,alignItems:'center'}}>
+        <legend style={{color:'black'}}>dodawanie autobusu</legend>
+        <div className='content'  >
             <form onSubmit={formik.handleSubmit}
-            style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
+            style={{display:'flex',flexDirection:'column', }}
              >
-       <label style={{color:'white'}} htmlFor="numer_boczny">nr boczny</label>
+       <label style={{color:'black'}} htmlFor="numer_boczny">nr boczny</label>
        <input
          id="numer_boczny"
          name="numer_boczny"
@@ -35,25 +37,25 @@ const formik = useFormik({
          value={formik.values.numer_boczny}
        />
  
-       <label htmlFor="marka" style={{color:'white'}}>marka</label>
+       <label htmlFor="marka" style={{color:'black'}}>marka</label>
        <input
          id="marka"
          name="marka"
          type="text"
          onChange={formik.handleChange}
-         value={formik.values.nazwisko}
+         value={formik.values.marka}
        />
 
-        <label htmlFor="model" style={{color:'white'}}>model</label>
+        <label htmlFor="model" style={{color:'black'}}>model</label>
        <input
          id="model"
          name="model"
          type="text"
          onChange={formik.handleChange}
-         value={formik.values.wynagrodzenie}
+         value={formik.values.model}
        />
  
-       <label htmlFor="id_parkingu" style={{color:'white'}}>id Parkingu</label>
+       <label htmlFor="id_parkingu" style={{color:'black'}}>id Parkingu</label>
        <input
          id="id_parkingu"
          name="id_parkingu"
@@ -62,7 +64,7 @@ const formik = useFormik({
          value={formik.values.id_parkingu}
        />
         
-       <label htmlFor="id_centrali" style={{color:'white'}}>id centrali</label>
+       <label htmlFor="id_centrali" style={{color:'black'}}>id centrali</label>
        <input
          id="id_centrali"
          name="id_centrali"
@@ -71,12 +73,26 @@ const formik = useFormik({
          value={formik.values.id_centrali}
        />
  
-       <button
-       type="submit">Dodaj</button>
+        <input 
+        placeholder='Enter to submit / 1 to go back'
+        style={{width:300}}
+        onKeyPress={(ev) => {
+
+          if(ev.key === "Enter") {
+            formik.handleSubmit();
+          } else if (ev.key === '1') {
+            history.push('/bus')
+          }else {
+            window.alert("there is no such option");
+          }
+        }}
+        
+        
+        />
      </form>
         </div>
       </fieldset>
-    </div>
+
     );
 }
 

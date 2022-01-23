@@ -1,8 +1,11 @@
 import React from 'react'
 import { useFormik } from 'formik';
 import Axios from 'axios';
+import {BrowserRouter as  Router, Route, Switch, Link, useHistory} from 'react-router-dom';
 
 const Add_client = () => {
+
+    let history = useHistory();
 
     const formik = useFormik({
         initialValues: {
@@ -11,7 +14,8 @@ const Add_client = () => {
           id_centrali: 1,
         },
         onSubmit: values => {
-            Axios.post("http://localhost:8080/klienci",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
+            console.log(values)
+          //  Axios.post("http://localhost:8080/klienci",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
 
         },
       });
@@ -19,12 +23,12 @@ const Add_client = () => {
     return (
         <div>
             <fieldset>
-                <legend>dodawanie klienta</legend>
-                <div className='content' style ={{display:'flex',flexDirection:'column',margin:30,alignItems:'center'}}>
-                    <form onSubmit={formik.handleSubmit}
-                    style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
-                    >
-                        <label style={{color:'white'}} htmlFor="imie">imie</label>
+            <legend style={{color:'black'}}>Dodawanie klienta</legend>
+                <div>
+                <form onSubmit={formik.handleSubmit}
+              style={{flexDirection:'column',display:'flex'}}
+              >
+                        <label style={{color:'black'}} htmlFor="imie">imie</label>
                         <input
                             id="imie"
                             name="imie"
@@ -33,7 +37,7 @@ const Add_client = () => {
                             value={formik.values.imie}
                         />
                     
-                        <label htmlFor="nazwisko" style={{color:'white'}}>nazwisko</label>
+                        <label htmlFor="nazwisko" style={{color:'black'}}>nazwisko</label>
                         <input
                             id="nazwisko"
                             name="nazwisko"
@@ -41,7 +45,7 @@ const Add_client = () => {
                             onChange={formik.handleChange}
                             value={formik.values.nazwisko}
                         />
-                        <label htmlFor="id_centrali" style={{color:'white'}}>id _centrali</label>
+                        <label htmlFor="id_centrali" style={{color:'black'}}>id _centrali</label>
                         <input
                             id="id_centrali"
                             name="id_centrali"
@@ -50,7 +54,22 @@ const Add_client = () => {
                             value={formik.values.id_centrali}
                         />
 
-                        <button type="submit">Dodaj</button>
+<input 
+        placeholder='Enter to submit/ 1 to go back'
+        style={{width:300}}
+        onKeyPress={(ev) => {
+
+          if(ev.key === "Enter") {
+            formik.handleSubmit();
+          } else if (ev.key === '1') {
+            history.push('/ticket')
+          }else {
+            window.alert("there is no such option");
+          }
+        }}
+        
+        
+        />
                     </form>
                 </div>
             </fieldset>

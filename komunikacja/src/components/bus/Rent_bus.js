@@ -1,9 +1,10 @@
 import React,{useEffect,useState} from 'react'
 import Axios from 'axios'
 import { useFormik } from 'formik';
+import {BrowserRouter as  Router, Route, Switch, Link, useHistory} from 'react-router-dom';
 
 const Rent_bus = () => {
-
+  let history = useHistory();
     const formik = useFormik({
         initialValues: {
             id_autobusu: 1,
@@ -33,15 +34,15 @@ const Rent_bus = () => {
   },[]);
 
     return (
-      <div style={{display:'flex',flexDirection:'column',justifyContent:'space-evenly'}}>
-     <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
+      <div style={{display:'flex',flexDirection:'column'}}>
+     <div style={{display:'flex',flexDirection:'column'}}>
         <fieldset>
-        <legend>Wypozycz Autobus</legend>
+        <legend style={{color:'black'}}>Wypozycz Autobus</legend>
         <div className='content' style ={{display:'flex',flexDirection:'column',margin:30,alignItems:'center'}}>
             <form onSubmit={formik.handleSubmit}
             style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
              >
-       <label style={{color:'white'}} htmlFor="id_autobusu">id Autobusu</label>
+       <label style={{color:'black'}} htmlFor="id_autobusu">id Autobusu</label>
        <input
          id="id_autobusu"
          name="id_autobusu"
@@ -50,7 +51,7 @@ const Rent_bus = () => {
          value={formik.values.id_autobusu}
        />
  
-       <label htmlFor="id_lini" style={{color:'white'}}>nr Lini</label>
+       <label htmlFor="id_lini" style={{color:'black'}}>nr Lini</label>
        <input
          id="id_linii"
          name="id_linii"
@@ -59,7 +60,7 @@ const Rent_bus = () => {
          value={formik.values.id_linii}
        />
 
-        <label htmlFor="id_pracownika" style={{color:'white'}}>id_pracownika</label>
+        <label htmlFor="id_pracownika" style={{color:'black'}}>id_pracownika</label>
        <input
          id="id_pracownika"
          name="id_pracownika"
@@ -68,23 +69,38 @@ const Rent_bus = () => {
          value={formik.values.id_pracownika}
        />
  
-       <button type="submit">Dodaj</button>
+       <input 
+        placeholder='Enter to submit / 1 to go back'
+        style={{width:300}}
+        onKeyPress={(ev) => {
+
+          if(ev.key === "Enter") {
+            formik.handleSubmit();
+          } else if (ev.key === '1') {
+            history.push('/bus')
+          }else {
+            window.alert("there is no such option");
+          }
+        }}
+        
+        
+        />
      </form>
         </div>
       </fieldset>
         <hr className='horizontal'/>
         <fieldset>
-          <legend>Dostępne autobusy</legend>
+          <legend style={{color:'black'}}>Dostępne autobusy</legend>
         <div style={{width:'80%',margin:30,}}>
-            <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-                <div style={{color:'white'}}>Id autobusu</div>
+            <div >
+                <div style={{color:'black'}}>Id autobusu</div>
             </div>
-            <hr/>
+         
           
         { 
             bus.map(o =>  o.isBusy === 0 ? (
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
-                <div style={{color:'white'}}>{o.id}</div>
+                <div style={{color:'black'}}>{o.id}</div>
  
                 </div>
           ) : null )
@@ -95,28 +111,36 @@ const Rent_bus = () => {
         </fieldset>
     </div>
     <fieldset>
-    <legend>Wypozyczone Autobusy</legend>
+    <legend style={{color:'black'}}>Wypozyczone Autobusy</legend>
   <div style={{width:'80%',margin:30,}}>
       <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
           <div style={{color:'white'}}>Id autobusu</div>
       </div>
-      <hr/>
+  
     
   { 
       bus.map(o =>  o.isBusy === 1 ? (
           <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
           <div style={{color:'white'}}>{o.id}</div>
         { wyp.map(g => ( g.id_autobusu === o.id ? 
-        <button onClick={() => 
-        (
-          Axios.post(`http://localhost:8080/pracownicy/setNotBusy/${g.id_pracownika}`).then(response => {console.log(response)}).catch(error => {console.log(error)}),
-          Axios.post(`http://localhost:8080/autobusy/setNotBusy/${g.id_autobusu}`).then(response => {console.log(response)}).catch(error => {console.log(error)}),
-          Axios.post(`http://localhost:8080/wypozyczenia/delete/${g.id}`).then(response => {console.log(response)}).catch(error => {console.log(error)})
-
-          )
-        }
-         > Zakoncz Wypozyczenie</button>
-        : null))
+        <input 
+        placeholder='2 to delete'
+        style={{width:300}}
+        onKeyPress={(ev) => {
+          if (ev.key === '2') {
+            
+              Axios.post(`http://localhost:8080/pracownicy/setNotBusy/${g.id_pracownika}`).then(response => {console.log(response)}).catch(error => {console.log(error)});
+              Axios.post(`http://localhost:8080/autobusy/setNotBusy/${g.id_autobusu}`).then(response => {console.log(response)}).catch(error => {console.log(error)});
+              Axios.post(`http://localhost:8080/wypozyczenia/delete/${g.id}`).then(response => {console.log(response)}).catch(error => {console.log(error)});
+            
+          }else {
+            window.alert("there is no such option");
+          }
+        }}
+        
+        
+        />
+        : null ))
          }
            
            

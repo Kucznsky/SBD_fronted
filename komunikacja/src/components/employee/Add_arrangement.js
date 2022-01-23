@@ -1,9 +1,10 @@
 import React,{useEffect,useState} from 'react'
 import Axios from 'axios'
 import { useFormik } from 'formik';
+import {BrowserRouter as  Router, Route, Switch, Link, useHistory} from 'react-router-dom';
 
 const Add_arrangement = () => {
-
+  let history = useHistory();
 
 
     const formik = useFormik({
@@ -28,14 +29,14 @@ const Add_arrangement = () => {
     },[]);
 
     return (
-        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
+        <div style={{display:'flex',flexDirection:'column'}}>
         <fieldset>
-        <legend>dodawanie pracownika</legend>
+        <legend style={{color:'black'}}>dodawanie pracownika</legend>
         <div className='content' style ={{display:'flex',flexDirection:'column',margin:30,alignItems:'center'}}>
             <form onSubmit={formik.handleSubmit}
             style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
              >
-       <label style={{color:'white'}} htmlFor="rodzaj_umowy">rodzaj umowy</label>
+       <label style={{color:'black'}} htmlFor="rodzaj_umowy">rodzaj umowy</label>
        <input
          id="rodzaj_umowy"
          name="rodzaj_umowy"
@@ -44,7 +45,7 @@ const Add_arrangement = () => {
          value={formik.values.rodzaj_umowy}
        />
  
-       <label htmlFor="okres" style={{color:'white'}}>okres</label>
+       <label htmlFor="okres" style={{color:'black'}}>okres</label>
        <input
          id="okres"
          name="okres"
@@ -53,25 +54,25 @@ const Add_arrangement = () => {
          value={formik.values.okres}
        />
 
-        <label htmlFor="data_zawarcia" style={{color:'white'}}>data zawarcia umowy</label>
+        <label htmlFor="data_zawarcia" style={{color:'black'}}>data zawarcia umowy</label>
        <input
          id="data_zawarcia"
          name="data_zawarcia"
-         type="date"
+         type="text"
          onChange={formik.handleChange}
          value={formik.values.data_zawarcia}
        />
  
-       <label htmlFor="data_rozwiazania" style={{color:'white'}}>data rozwiazania</label>
+       <label htmlFor="data_rozwiazania" style={{color:'black'}}>data rozwiazania</label>
        <input
          id="data_rozwiazania"
          name="data_rozwiazania"
-         type="date"
+         type="text"
          onChange={formik.handleChange}
          value={formik.values.data_rozwiazania}
        />
         
-       <label htmlFor="id_pracownika" style={{color:'white'}}>id pracownika</label>
+       <label htmlFor="id_pracownika" style={{color:'black'}}>id pracownika</label>
        <input
          id="id_pracownika"
          name="id_pracownika"
@@ -80,8 +81,22 @@ const Add_arrangement = () => {
          value={formik.values.id_pracownika}
        />
  
-       <button
-       type="submit">Dodaj</button>
+ <input 
+        placeholder='Enter to submit / 1 to go back'
+        style={{width:300}}
+        onKeyPress={(ev) => {
+
+          if(ev.key === "Enter") {
+            formik.handleSubmit();
+          } else if (ev.key === '1') {
+            history.push('/employee')
+          }else {
+            window.alert("there is no such option");
+          }
+        }}
+        
+        
+        />
      </form>
         </div>
       </fieldset>
@@ -90,18 +105,18 @@ const Add_arrangement = () => {
           <legend>Pracownicy</legend>
         <div style={{width:'80%',margin:30,}}>
             <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-                <div style={{color:'white', margin:10}}>Imię</div>
-                <div style={{color:'white', margin:10}}>Nazwisko</div>
-                <div style={{color:'white', margin:10}}>Id</div>
+                <div style={{color:'black', margin:10}}>Imię</div>
+                <div style={{color:'black', margin:10}}>Nazwisko</div>
+                <div style={{color:'black', margin:10}}>Id</div>
             </div>
-            <hr/>
+     
           
         { 
             pracownicy.map(o => (
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
-                <div style={{color:'white'}}>{o.imie}</div>
-                <div style={{color:'white'}}>{o.nazwisko}</div>
-                <div style={{color:'white'}}>{o.id}</div>
+                <div style={{color:'black'}}>{o.imie}</div>
+                <div style={{color:'black'}}>{o.nazwisko}</div>
+                <div style={{color:'black'}}>{o.id}</div>
                 </div>
           ))
         } 

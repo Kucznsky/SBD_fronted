@@ -1,11 +1,14 @@
 import React,{useEffect,useState} from 'react'
 import Axios from 'axios'
 import { useFormik } from 'formik';
+import {BrowserRouter as  Router, Route, Switch, Link, useHistory} from 'react-router-dom';
+
 
 
 
 
 const Buy_ticket = () => {
+  let history = useHistory();
     const formik = useFormik({
         initialValues: {
           rodzaj: '',
@@ -13,7 +16,7 @@ const Buy_ticket = () => {
           koszt: 0,
         },
         onSubmit: values => {
-          Axios.post("http://localhost:8080/bilety",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
+           Axios.post("http://localhost:8080/bilety",values).then(response => {console.log(response)}).catch(error => {console.log(error)})
         },
       });
 
@@ -24,13 +27,15 @@ const Buy_ticket = () => {
     },[]);
 
     return (
-        <fieldset>
-          <legend>Kupowanie Biletu</legend>
-          <div className='content' style ={{display:'flex',flexDirection:'column',margin:100,alignItems:'center',justifyContent:'center',alignSelf:'center'}}>
+
+        <fieldset >
+          <legend style={{color:'black'}}>Kupowanie Biletu</legend>
+          <div >
               <form onSubmit={formik.handleSubmit}
-              style={{display:'flex',flexDirection:'column', width:'40%',margin:20,alignSelf:'center',alignItems:'center'}}
+              style={{flexDirection:'column',display:'flex'}}
               >
-        <label style={{color:'white'}} htmlFor="rodzaj">rodzaj</label>
+           
+        <label  htmlFor="rodzaj" style={{color:'black'}}>rodzaj</label>
         <input
           id="rodzaj"
           name="rodzaj"
@@ -39,7 +44,7 @@ const Buy_ticket = () => {
           value={formik.values.rodzaj}
         />
 
-        <label htmlFor="id_klienta" style={{color:'white'}}>Id klienta</label>
+        <label htmlFor="id_klienta" style={{color:'black'}}>Id klienta</label>
         <input
           id="id_klienta"
           name="id_klienta"
@@ -49,7 +54,7 @@ const Buy_ticket = () => {
         />
 
 
-        <label htmlFor="koszt" style={{color:'white'}}>koszt</label>
+        <label htmlFor="koszt" style={{color:'black'}}>koszt</label>
         <input
           id="koszt"
           name="koszt"
@@ -58,11 +63,27 @@ const Buy_ticket = () => {
           value={formik.values.koszt}
         />
 
-        <button type="submit">Dodaj</button>
+        <input 
+        placeholder='Enter to submit/ 1 to go back'
+        style={{width:300}}
+        onKeyPress={(ev) => {
+
+          if(ev.key === "Enter") {
+            formik.handleSubmit();
+          } else if (ev.key === '1') {
+            history.push('/ticket')
+          }else {
+            window.alert("there is no such option");
+          }
+        }}
+        
+        
+        />
       </form>
 
           </div>
       </fieldset>
+     
     )
 }
 

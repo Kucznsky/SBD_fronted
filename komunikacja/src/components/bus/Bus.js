@@ -1,49 +1,36 @@
 import React from 'react'
-import {BrowserRouter as  Router, Route, Switch, Link} from 'react-router-dom';
-import Bus_info from './Bus_info';
-import Bus_stops from './Bus_stops';
-import Lines from './Lines';
-import Add_bus from './Add_bus';
-import Rent_bus from './Rent_bus';
+import {BrowserRouter as  Router, Route, Switch, Link, useHistory} from 'react-router-dom';
+
 
 const Bus = () => {
+    let history = useHistory();
     return (
        <Router>
-            <div className='content'>
-            <nav className='navbar_links'>
-                <ul>
-                    <li>
-                        <Link className='link2' to='/bus_info'>Bus info</Link>
-                    </li>
-                    <li>
-                        <Link className='link2' to='/bus_info/bus_stops'>Bus stops</Link>
-                    </li>
-                     <li>
-                        <Link className='link2' to='/bus_info/add_bus'>Add bus</Link>
-                    </li>
-                    <li>
-                        <Link className='link2' to='/bus_info/Rent_bus'>Rent bus</Link>
-                    </li>
-                </ul>
-            </nav>
-            </div>
-            <Switch>
-                <Route exact path="/bus_info">
-                    <Bus_info></Bus_info>
-                </Route>
-                <Route exact path='/bus_info/bus_stops'>
-                    <Bus_stops></Bus_stops>
-                </Route>
-                <Route exact path='/bus_info/Rent_bus'>
-                    <Rent_bus></Rent_bus>
-                </Route>
-                <Route exact path='/bus_info/add_bus'>
-                    <Add_bus></Add_bus>
-                </Route>
-                <Route exact path='/bus_info/:id'>
-                    <Lines></Lines>
-                </Route>
-            </Switch>
+           <div> Where to navigate:
+            <div>1. Bus info</div>
+            <div>2. Rent_bus</div>
+            <div>3. Add_bus</div>
+            <div>4. Back</div>
+            <div>---------------</div>
+            <input
+      onKeyPress={(ev) => {
+
+          if(ev.key === "1") {
+        history.push('/bus_info')
+          }else if (ev.key === '2') {
+            history.push('/bus_info/Rent_bus')
+          }else if(ev.key === '3') {
+            history.push('/bus_info/add_bus')
+          }else if(ev.key === '4') {
+            history.push('/')
+          }else {
+            window.alert("there is no such option");
+          }
+        
+      }}
+    />
+        </div>
+
         </Router>
     )
 }
